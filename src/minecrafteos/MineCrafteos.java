@@ -1,6 +1,5 @@
 package minecrafteos;
 
-import java.net.URL;
 import minecrafteos.audio.Audio;
 import minecrafteos.controller.MainController;
 import minecrafteos.model.users.Users;

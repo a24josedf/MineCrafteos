@@ -9,8 +9,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import minecrafteos.model.object.ObjectM;
@@ -52,6 +52,7 @@ public class SearchJDialog extends javax.swing.JDialog {
         searchPanel = new javax.swing.JPanel();
         searchTextField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        itemsComboBox = new javax.swing.JComboBox<>();
         furnaceLayeredPane = new javax.swing.JLayeredPane();
         itemFurnace01Button = new javax.swing.JButton();
         itemFurnaceResultButton = new javax.swing.JButton();
@@ -77,12 +78,18 @@ public class SearchJDialog extends javax.swing.JDialog {
         searchButton.setForeground(new java.awt.Color(198, 198, 198));
         searchButton.setBorder(null);
 
+        itemsComboBox.setEditable(true);
+        itemsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
-                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(itemsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -94,10 +101,21 @@ public class SearchJDialog extends javax.swing.JDialog {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         furnaceLayeredPane.setForeground(new java.awt.Color(198, 198, 198));
+
+        itemFurnace01Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemFurnace01Button.setBorder(null);
+
+        itemFurnaceResultButton.setBackground(new java.awt.Color(139, 139, 139));
+        itemFurnaceResultButton.setBorder(null);
+
+        itemFurnace02Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemFurnace02Button.setBorder(null);
 
         furnaceLayeredPane.setLayer(itemFurnace01Button, javax.swing.JLayeredPane.DEFAULT_LAYER);
         furnaceLayeredPane.setLayer(itemFurnaceResultButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -131,6 +149,36 @@ public class SearchJDialog extends javax.swing.JDialog {
         );
 
         craftingLayeredPane.setForeground(new java.awt.Color(198, 198, 198));
+
+        itemCrafting02Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting02Button.setBorder(null);
+
+        itemCrafting01Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting01Button.setBorder(null);
+
+        itemCrafting03Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting03Button.setBorder(null);
+
+        itemCrafting06Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting06Button.setBorder(null);
+
+        itemCrafting05Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting05Button.setBorder(null);
+
+        itemCrafting08Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting08Button.setBorder(null);
+
+        itemCrafting04Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting04Button.setBorder(null);
+
+        itemCrafting07Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting07Button.setBorder(null);
+
+        itemCrafting09Button.setBackground(new java.awt.Color(139, 139, 139));
+        itemCrafting09Button.setBorder(null);
+
+        itemCraftingResultButton.setBackground(new java.awt.Color(139, 139, 139));
+        itemCraftingResultButton.setBorder(null);
 
         craftingLayeredPane.setLayer(itemCrafting02Button, javax.swing.JLayeredPane.DEFAULT_LAYER);
         craftingLayeredPane.setLayer(itemCrafting01Button, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -166,7 +214,7 @@ public class SearchJDialog extends javax.swing.JDialog {
                 .addGroup(craftingLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(itemCrafting06Button, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(itemCrafting03Button, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(itemCrafting09Button, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(itemCrafting09Button, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(itemCraftingResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -217,21 +265,11 @@ public class SearchJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void setSearchImage(){
-        ImageIcon imageTitle = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        
-        Image scaled = imageTitle.getImage().getScaledInstance(
-                searchButton.getWidth(), // ancho del JLabel
-                searchButton.getHeight(), // alto del JLabel
-                Image.SCALE_SMOOTH // suaviza la imagen
-        );
-        searchPanel.setBackground(colorFondo);
-        searchButton.setBackground(colorFondo);
-        this.searchButton.setIcon(new ImageIcon(scaled));
+    public String getTextItemsComboBox(){
+        return this.itemsComboBox.getActionCommand();
     }
-    
-       public void setFurnaceImageLogoPanel(Image img) {
-        
+
+    public void setFurnaceImageLogoPanel(Image img) {
         JPanel panelWithImage = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -239,7 +277,7 @@ public class SearchJDialog extends javax.swing.JDialog {
                 if (img != null) {
                     g.setColor(colorFondo);
                     g.fillRect(0, 0, getWidth(), getHeight());
-                    
+
                     g.drawImage(img, 0, 0, getWidth() - 80, getHeight(), this);
                 }
             }
@@ -253,8 +291,9 @@ public class SearchJDialog extends javax.swing.JDialog {
         furnaceLayeredPane.revalidate();
         furnaceLayeredPane.repaint();
     }
-       public void setCraftingImageLogoPanel(Image img) {
-        
+
+    public void setCraftingImageLogoPanel(Image img) {
+
         JPanel panelWithImage = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -274,38 +313,37 @@ public class SearchJDialog extends javax.swing.JDialog {
         craftingLayeredPane.revalidate();
         craftingLayeredPane.repaint();
     }
-       
-    public void isItemFurnace(boolean state){
-        if(!state){
-            showCraftingLayeredPane(true);
-            showFurnaceLayeredPane(false);
-        } else {
-            showFurnaceLayeredPane(true);
-            showCraftingLayeredPane(false);
-        }
+    
+    public void showCraftingLayeredPane(boolean show){
+        this.craftingLayeredPane.setVisible(show);
+        this.pack();
+    }
+    public void showFurnaceLayeredPane(boolean show){
+        this.furnaceLayeredPane.setVisible(show);
+        this.pack();
     }
     
     public void getSearchButtonActionListener(ActionListener al){
         this.searchButton.addActionListener(al);
     }
     
-    public void setItemsCraftingButton(ArrayList<ObjectM> recepieCraft){
+    public void setItemsCraftingButton(ArrayList<ObjectM> recepieCraft, String imageCraft){
         ArrayList<String> pathsImages = new ArrayList<>();
         for(ObjectM item : recepieCraft){
             String pathImage = item.getImage();
             pathsImages.add(pathImage);
         }
         
-        this.itemCrafting01Button.setIcon(new ImageIcon(this.getImageItemCraft01(pathsImages)));
-        this.itemCrafting02Button.setIcon(new ImageIcon(this.getImageItemCraft02(pathsImages)));
-        this.itemCrafting03Button.setIcon(new ImageIcon(this.getImageItemCraft03(pathsImages)));
-        this.itemCrafting04Button.setIcon(new ImageIcon(this.getImageItemCraft04(pathsImages)));
-        this.itemCrafting05Button.setIcon(new ImageIcon(this.getImageItemCraft05(pathsImages)));
-        this.itemCrafting06Button.setIcon(new ImageIcon(this.getImageItemCraft06(pathsImages)));
-        this.itemCrafting07Button.setIcon(new ImageIcon(this.getImageItemCraft07(pathsImages)));
-        this.itemCrafting08Button.setIcon(new ImageIcon(this.getImageItemCraft08(pathsImages)));
-        this.itemCrafting09Button.setIcon(new ImageIcon(this.getImageItemCraft09(pathsImages)));
-        this.itemCraftingResultButton.setIcon(new ImageIcon(this.getImageItemCraftResult(pathsImages)));
+        setIconsItemsCrafts(pathsImages,imageCraft);
+    }
+    
+    public void setItemsFurnaceButton(ArrayList<ObjectM> recepieCraft, String imageCraft){
+        ArrayList<String> pathsImages = new ArrayList<>();
+        for(ObjectM item : recepieCraft){
+            String pathImage = item.getImage();
+            pathsImages.add(pathImage);
+        }
+        setIconsItemsFurnace(pathsImages,imageCraft);
     }
     
     private Image getImageItemCraft01(ArrayList<String> pathsImages){
@@ -416,8 +454,7 @@ public class SearchJDialog extends javax.swing.JDialog {
         return scaled;
     }
     
-    private Image getImageItemCraftResult(ArrayList<String> pathsImages){
-        String pathImage = pathsImages.get(9);
+    private Image getImageItemCraftResult(String pathImage){
         ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
         
         Image scaled = iconButton.getImage().getScaledInstance(
@@ -427,14 +464,59 @@ public class SearchJDialog extends javax.swing.JDialog {
         );
         return scaled;
     }
-       
-    private void showCraftingLayeredPane(boolean show){
-        this.craftingLayeredPane.setVisible(show);
-        this.pack();
+    
+    private Image getImageItemFurnace01(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(0);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
     }
-    private void showFurnaceLayeredPane(boolean show){
-        this.furnaceLayeredPane.setVisible(show);
-        this.pack();
+    
+    private Image getImageItemFurnace02(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(1);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemFurnaceResult(String pathImage){
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private void setIconsItemsCrafts(ArrayList<String> pathsImages, String imageCraft){
+        this.itemCrafting01Button.setIcon(new ImageIcon(this.getImageItemCraft01(pathsImages)));
+        this.itemCrafting02Button.setIcon(new ImageIcon(this.getImageItemCraft02(pathsImages)));
+        this.itemCrafting03Button.setIcon(new ImageIcon(this.getImageItemCraft03(pathsImages)));
+        this.itemCrafting04Button.setIcon(new ImageIcon(this.getImageItemCraft04(pathsImages)));
+        this.itemCrafting05Button.setIcon(new ImageIcon(this.getImageItemCraft05(pathsImages)));
+        this.itemCrafting06Button.setIcon(new ImageIcon(this.getImageItemCraft06(pathsImages)));
+        this.itemCrafting07Button.setIcon(new ImageIcon(this.getImageItemCraft07(pathsImages)));
+        this.itemCrafting08Button.setIcon(new ImageIcon(this.getImageItemCraft08(pathsImages)));
+        this.itemCrafting09Button.setIcon(new ImageIcon(this.getImageItemCraft09(pathsImages)));
+        this.itemCraftingResultButton.setIcon(new ImageIcon(this.getImageItemCraftResult(imageCraft)));
+    }
+    
+    private void setIconsItemsFurnace(ArrayList<String> pathsImages, String imageCraft){
+        this.itemFurnace01Button.setIcon(new ImageIcon(this.getImageItemFurnace01(pathsImages)));
+        this.itemFurnace02Button.setIcon(new ImageIcon(this.getImageItemFurnace02(pathsImages)));
+        this.itemFurnaceResultButton.setIcon(new ImageIcon(this.getImageItemFurnaceResult(imageCraft)));
     }
 
     private void setCraftingBackgroundImage() {
@@ -445,6 +527,19 @@ public class SearchJDialog extends javax.swing.JDialog {
     private void setFurnaceBackgroundImage() {
         Image image1 = new ImageIcon(getClass().getResource("/img/furnace.png")).getImage();
         setFurnaceImageLogoPanel(image1);
+    }
+    
+    private void setSearchImage() {
+        ImageIcon imageTitle = new ImageIcon(getClass().getResource("/img/lupa.png"));
+
+        Image scaled = imageTitle.getImage().getScaledInstance(
+                searchButton.getWidth(), // ancho del JLabel
+                searchButton.getHeight(), // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        searchPanel.setBackground(colorFondo);
+        searchButton.setBackground(colorFondo);
+        this.searchButton.setIcon(new ImageIcon(scaled));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane craftingLayeredPane;
@@ -462,6 +557,7 @@ public class SearchJDialog extends javax.swing.JDialog {
     private javax.swing.JButton itemFurnace01Button;
     private javax.swing.JButton itemFurnace02Button;
     private javax.swing.JButton itemFurnaceResultButton;
+    private javax.swing.JComboBox<String> itemsComboBox;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextField;
@@ -479,5 +575,19 @@ public class SearchJDialog extends javax.swing.JDialog {
      */
     public void setSearchTextField(javax.swing.JTextField searchTextField) {
         this.searchTextField = searchTextField;
+    }
+
+    /**
+     * @return the itemsComboBox
+     */
+    public javax.swing.JComboBox<String> getItemsComboBox() {
+        return itemsComboBox;
+    }
+
+    /**
+     * @param itemsComboBox the itemsComboBox to set
+     */
+    public void setItemsComboBox(javax.swing.JComboBox<String> itemsComboBox) {
+        this.itemsComboBox = itemsComboBox;
     }
 }
