@@ -1,6 +1,7 @@
 package minecrafteos;
 
 import java.net.URL;
+import minecrafteos.audio.Audio;
 import minecrafteos.controller.MainController;
 import minecrafteos.model.users.Users;
 import minecrafteos.view.MainJFrame;
@@ -18,8 +19,13 @@ public class MineCrafteos {
         MainJFrame mainView = new MainJFrame();
         Users modelUsers = new Users();
         MainController mainController = new MainController(mainView, modelUsers);
+        backgroundMusic();
         mainView.setVisible(true);
         
     }
     
+    public static void backgroundMusic(){
+        Audio player = new Audio();
+        player.playLoop("/audio/musica.wav");
+    }
 }

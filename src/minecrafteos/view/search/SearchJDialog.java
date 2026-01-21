@@ -9,8 +9,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import minecrafteos.model.object.ObjectM;
 
 /**
  *
@@ -286,8 +289,143 @@ public class SearchJDialog extends javax.swing.JDialog {
         this.searchButton.addActionListener(al);
     }
     
-    public void setItemsCraftingButton(){
+    public void setItemsCraftingButton(ArrayList<ObjectM> recepieCraft){
+        ArrayList<String> pathsImages = new ArrayList<>();
+        for(ObjectM item : recepieCraft){
+            String pathImage = item.getImage();
+            pathsImages.add(pathImage);
+        }
         
+        this.itemCrafting01Button.setIcon(new ImageIcon(this.getImageItemCraft01(pathsImages)));
+        this.itemCrafting02Button.setIcon(new ImageIcon(this.getImageItemCraft02(pathsImages)));
+        this.itemCrafting03Button.setIcon(new ImageIcon(this.getImageItemCraft03(pathsImages)));
+        this.itemCrafting04Button.setIcon(new ImageIcon(this.getImageItemCraft04(pathsImages)));
+        this.itemCrafting05Button.setIcon(new ImageIcon(this.getImageItemCraft05(pathsImages)));
+        this.itemCrafting06Button.setIcon(new ImageIcon(this.getImageItemCraft06(pathsImages)));
+        this.itemCrafting07Button.setIcon(new ImageIcon(this.getImageItemCraft07(pathsImages)));
+        this.itemCrafting08Button.setIcon(new ImageIcon(this.getImageItemCraft08(pathsImages)));
+        this.itemCrafting09Button.setIcon(new ImageIcon(this.getImageItemCraft09(pathsImages)));
+        this.itemCraftingResultButton.setIcon(new ImageIcon(this.getImageItemCraftResult(pathsImages)));
+    }
+    
+    private Image getImageItemCraft01(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(0);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft02(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(1);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft03(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(2);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft04(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(3);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft05(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(4);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft06(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(5);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft07(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(6);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft08(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(7);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraft09(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(8);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
+    }
+    
+    private Image getImageItemCraftResult(ArrayList<String> pathsImages){
+        String pathImage = pathsImages.get(9);
+        ImageIcon iconButton = new ImageIcon(getClass().getResource(pathImage));
+        
+        Image scaled = iconButton.getImage().getScaledInstance(
+                itemCrafting01Button.getWidth() - 10, // ancho del JLabel
+                itemCrafting01Button.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        return scaled;
     }
        
     private void showCraftingLayeredPane(boolean show){

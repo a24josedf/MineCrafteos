@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import minecrafteos.audio.Audio;
 import minecrafteos.controller.search.SearchController;
 import minecrafteos.controller.users.SessionJDialogController;
 import minecrafteos.model.users.Users;
@@ -30,18 +31,30 @@ public class MainController {
         this.modelUser = modelUser;
         this.view.addUserButtonActionListener(this.addUserButtonActionListener());
         this.view.addSearchButtonActionListener(this.addSearchButtonActionListener());
+        this.view.addCreateObjectButtonActionListener(this.addCreateButtonActionListener());
         this.view.addSearchButtonMouseListener(this.addPressButtonMouseListener(view.getSearchButton()));
         this.view.addCreateObjectButtonMouseListener(this.addPressButtonMouseListener(view.getCreateObjectButton()));
         this.view.addUserButtonMouseListener(this.addUserButtonMouseListener(view.getUserButton()));
+    }
+    
+    private ActionListener addCreateButtonActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                sound();
+            }
+        };
+        return al;
     }
     
     private ActionListener addSearchButtonActionListener(){
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                 SearchJDialog sjd = new SearchJDialog(view, true);
-                 SearchController sc =  new SearchController(sjd);
-                 sjd.setVisible(true);
+                sound();
+                SearchJDialog sjd = new SearchJDialog(view, true);
+                SearchController sc = new SearchController(sjd);
+                sjd.setVisible(true);
             }
         };
         return al;
@@ -51,13 +64,14 @@ public class MainController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                    SessionJDialog sjd = new SessionJDialog(view, true);
+                sound();
+                SessionJDialog sjd = new SessionJDialog(view, true);
                 try {
-                    SessionJDialogController sjdc = new SessionJDialogController(sjd,modelUser);
+                    SessionJDialogController sjdc = new SessionJDialogController(sjd, modelUser);
                 } catch (IOException | ClassNotFoundException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    sjd.setVisible(true);
+                sjd.setVisible(true);
             }
         };
         return al;
@@ -119,5 +133,11 @@ public class MainController {
             public void mouseReleased(MouseEvent e) {}
         };
         return ml;
+    }
+    
+    private void sound(){
+        Audio player = new Audio();
+        player.play("/audio/boton.wav");
+        player.setVolume(0.9f);
     }
 }

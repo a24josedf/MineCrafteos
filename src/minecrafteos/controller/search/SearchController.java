@@ -3,6 +3,7 @@ package minecrafteos.controller.search;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import minecrafteos.audio.Audio;
 import minecrafteos.model.object.Crafteable;
 import minecrafteos.model.object.ObjectM;
 import minecrafteos.view.search.SearchJDialog;
@@ -51,6 +52,7 @@ public class SearchController {
         for(Crafteable item : itemsList){
             if(input.equals(item.getName())){
                 view.isItemFurnace(item.isFurnace());
+                view.setItemsCraftingButton(normalItemsList);
             }
         }
     }
@@ -59,9 +61,16 @@ public class SearchController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sound();
                 searchBarConfig();
             }
         };
         return al;
+    }
+    
+    private void sound(){
+        Audio player = new Audio();
+        player.play("/audio/boton.wav");
+        player.setVolume(0.9f);
     }
 }
