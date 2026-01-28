@@ -2,11 +2,15 @@ package minecrafteos.controller.users;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import minecrafteos.model.users.User;
 import minecrafteos.model.users.Users;
@@ -26,7 +30,9 @@ public class SessionJDialogController {
         this.model = model;
         //manageLogInButton();
         this.view.addLogInButtonActionListener(this.getLogInButtonActionListener());
-        this.view.addSingUpButtonActionListener(this.getSingUpButtonActionListener());
+        this.view.addSignUpButtonActionListener(this.getSingUpButtonActionListener());
+        this.view.addLogInMouseListener(this.addPressButtonMouseListener(view.getLoginButton()));
+        this.view.addSignUpMouseListener(this.addPressButtonMouseListener(this.view.getSignupButton()));
     }
 
     private void verifyLogIn() throws IOException, ClassNotFoundException, SQLException {
@@ -180,5 +186,38 @@ public class SessionJDialogController {
             }
         };
         return al;
+    }
+    
+    private MouseListener addPressButtonMouseListener(JButton button){
+        MouseListener ml = new MouseListener() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonEnteredMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonPressedMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonEnteredMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+        };
+        return ml;
     }
 }

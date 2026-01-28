@@ -6,12 +6,11 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
@@ -53,6 +52,7 @@ public class SessionJDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         signupButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        signupButton.setForeground(new java.awt.Color(255, 255, 255));
         signupButton.setText("Sign Up");
         signupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +61,7 @@ public class SessionJDialog extends javax.swing.JDialog {
         });
 
         loginButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Log In");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,16 +104,15 @@ public class SessionJDialog extends javax.swing.JDialog {
             .addGroup(initImagePanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(initImagePanelLayout.createSequentialGroup()
                         .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         initImagePanelLayout.setVerticalGroup(
             initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,23 +162,7 @@ public class SessionJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
     
-     public void setBackgroundButtons(JButton button, ImageIcon icon) {
-        Image scaled = icon.getImage().getScaledInstance(
-                button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH
-        );
-
-        button.setIcon(new ImageIcon(scaled));
-        button.setText(button.getText());
-
-        button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalTextPosition(SwingConstants.CENTER);
-
-        button.setBorderPainted(false);
-        button.setFocusPainted(false);
-        button.setContentAreaFilled(false);
-    }
-     
-     private void setFontText() {
+    private void setFontText() {
         try {
             Font mcFont = Font.createFont(
                     Font.TRUETYPE_FONT,
@@ -194,29 +178,42 @@ public class SessionJDialog extends javax.swing.JDialog {
             this.usernameLabel.setFont(mcFont);
             this.passwordLabel.setFont(mcFont);
             this.usernameTextField.setFont(mcFont);
-            this.passwordPasswordField.setFont(mcFont);        
-
+            this.passwordPasswordField.setFont(mcFont);
 
         } catch (FontFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
-     
-     
-    
-   public void setBackground() {
+
+    public void setBackground() {
         ImageIcon png = new ImageIcon(getClass().getResource("/img/Overworld_background.png"));
         JLabel backgroundLabel = new JLabel(png);
 
         backgroundLabel.setLayout(new BorderLayout());
         backgroundLabel.setPreferredSize(initImagePanel.getSize());
-        
+
         initImagePanel.setLayout(new BorderLayout());
         initImagePanel.add(backgroundLabel, BorderLayout.CENTER);
         initImagePanel.revalidate();
         initImagePanel.repaint();
     }
-   
+    
+    public void setBackgroundButtons(JButton button, ImageIcon icon) {
+        Image scaled = icon.getImage().getScaledInstance(
+                button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH
+        );
+
+        button.setIcon(new ImageIcon(scaled));
+        button.setText(button.getText());
+
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+    }
+
     private void setBackgroundButtons() {
         ImageIcon icon = new ImageIcon(
                 getClass().getResource("/img/buttonMC.png")
@@ -235,7 +232,7 @@ public class SessionJDialog extends javax.swing.JDialog {
         signupButton.setBorderPainted(false);
         signupButton.setFocusPainted(false);
         signupButton.setContentAreaFilled(false);
-        
+
         loginButton.setIcon(new ImageIcon(scaled));
         loginButton.setText(loginButton.getText());
 
@@ -246,9 +243,7 @@ public class SessionJDialog extends javax.swing.JDialog {
         loginButton.setFocusPainted(false);
         loginButton.setContentAreaFilled(false);
     }
-    
-    
-    
+
     public JButton getLoginButton() {
         return loginButton;
     }
@@ -281,18 +276,26 @@ public class SessionJDialog extends javax.swing.JDialog {
         this.usernameTextField.setText(userName);
     }
 
-    public void addSingUpButtonActionListener(ActionListener al){
+    public void addSignUpButtonActionListener(ActionListener al) {
         this.getSignupButton().addActionListener(al);
     }
-    
-    public void addLogInButtonActionListener(ActionListener al){
+
+    public void addLogInButtonActionListener(ActionListener al) {
         this.getLoginButton().addActionListener(al);
     }
-    
-    public void enableDisableLogInButton(boolean enableDisable){
+
+    public void enableDisableLogInButton(boolean enableDisable) {
         this.getLoginButton().setEnabled(enableDisable);
     }
     
+    public void addLogInMouseListener(MouseListener ml){
+        this.getLoginButton().addMouseListener(ml);
+    }
+    
+    public void addSignUpMouseListener(MouseListener ml){
+        this.getSignupButton().addMouseListener(ml);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel initImagePanel;

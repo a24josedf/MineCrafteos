@@ -5,6 +5,7 @@
 package minecrafteos.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -34,10 +35,10 @@ public class MainJFrame extends javax.swing.JFrame {
         this.setResizable(false);
         
         setFontText();
-        setIconUser();
         setBackgroundButtons();
         setBackgroundGif();
         setTitleImage();
+        //setIconUser();
     }
 
     /**
@@ -69,6 +70,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userButton.setBackground(new java.awt.Color(153, 153, 153));
         userButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         userButton.setForeground(new java.awt.Color(255, 255, 255));
+        userButton.setText("Log Account");
         userButton.setBorder(null);
 
         createObjectButton.setBackground(new java.awt.Color(153, 153, 153));
@@ -90,8 +92,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGap(278, 278, 278)
                         .addComponent(createObjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(initImagePanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -102,8 +104,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95)
-                .addComponent(createObjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addComponent(createObjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(userButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
@@ -164,6 +166,10 @@ public class MainJFrame extends javax.swing.JFrame {
         Image scaled = icon.getImage().getScaledInstance(
                 searchButton.getWidth(), searchButton.getHeight(), Image.SCALE_SMOOTH
         );
+        
+        Image scaledUser = icon.getImage().getScaledInstance(
+                userButton.getWidth(), userButton.getHeight(), Image.SCALE_SMOOTH
+        );
 
         searchButton.setIcon(new ImageIcon(scaled));
         searchButton.setText(searchButton.getText());
@@ -184,6 +190,16 @@ public class MainJFrame extends javax.swing.JFrame {
         createObjectButton.setBorderPainted(false);
         createObjectButton.setFocusPainted(false);
         createObjectButton.setContentAreaFilled(false);
+        
+        userButton.setIcon(new ImageIcon(scaledUser));
+        userButton.setText(userButton.getText());
+
+        userButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        userButton.setVerticalTextPosition(SwingConstants.CENTER);
+
+        userButton.setBorderPainted(false);
+        userButton.setFocusPainted(false);
+        userButton.setContentAreaFilled(false);
     }
     
     private void setBackgroundGif() {
@@ -212,6 +228,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void setIconUser(){
+        this.userButton.setSize(65, 65);
+        this.userButton.setText("");
+        this.userButton.setIcon(null);
+        
         ImageIcon iconUser = new ImageIcon(getClass().getResource("/img/iconUser.png"));
         
         Image scaled = iconUser.getImage().getScaledInstance(
@@ -235,6 +255,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             this.searchButton.setFont(mcFont);
             this.createObjectButton.setFont(mcFont);
+            this.userButton.setFont(mcFont);
 
 
         } catch (FontFormatException | IOException ex) {

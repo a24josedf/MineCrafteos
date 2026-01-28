@@ -17,7 +17,6 @@ import minecrafteos.controller.users.SessionJDialogController;
 import minecrafteos.model.users.Users;
 import minecrafteos.view.MainJFrame;
 import minecrafteos.view.create.CreateObjectJDialog;
-import minecrafteos.view.filechooser.FileChooserJDialog;
 import minecrafteos.view.search.SearchJDialog;
 import minecrafteos.view.users.SessionJDialog;
 
@@ -37,7 +36,13 @@ public class MainController {
         this.view.addCreateObjectButtonActionListener(this.addCreateButtonActionListener());
         this.view.addSearchButtonMouseListener(this.addPressButtonMouseListener(view.getSearchButton()));
         this.view.addCreateObjectButtonMouseListener(this.addPressButtonMouseListener(view.getCreateObjectButton()));
-        this.view.addUserButtonMouseListener(this.addUserButtonMouseListener(view.getUserButton()));
+        if(modelUser.getCurrentUser() == null){
+            this.view.addUserButtonMouseListener(this.addPressButtonMouseListener(view.getUserButton()));
+            //this.view.addUserButtonMouseListener(this.addUserButtonMouseListener(view.getUserButton()));
+        } else {
+            this.view.addUserButtonMouseListener(this.addUserButtonMouseListener(view.getUserButton()));
+        }
+        
     }
     
     private ActionListener addCreateButtonActionListener(){

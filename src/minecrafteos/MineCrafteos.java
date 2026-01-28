@@ -1,4 +1,4 @@
-package minecrafteos;
+               package minecrafteos;
 
 import minecrafteos.audio.Audio;
 import minecrafteos.controller.MainController;
