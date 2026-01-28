@@ -5,26 +5,24 @@
 package minecrafteos.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author alumno
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
 
     /**
@@ -33,12 +31,13 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         this.setTitle("MineCrafteos");
+        this.setResizable(false);
         
-        //setBackgroundImage();
+        setFontText();
+        setIconUser();
+        setBackgroundButtons();
         setBackgroundGif();
         setTitleImage();
-        this.searchButton.addMouseListener(this.getPressButtonMouseListener(this.searchButton));
-        this.userButton.addMouseListener(this.getPressButtonMouseListener(this.userButton));
     }
 
     /**
@@ -59,7 +58,6 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         searchButton.setBackground(new java.awt.Color(153, 153, 153));
-        searchButton.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
         searchButton.setText("Search");
         searchButton.addActionListener(this::searchButtonActionPerformed);
@@ -71,10 +69,9 @@ public class MainJFrame extends javax.swing.JFrame {
         userButton.setBackground(new java.awt.Color(153, 153, 153));
         userButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         userButton.setForeground(new java.awt.Color(255, 255, 255));
-        userButton.setText("User");
+        userButton.setBorder(null);
 
         createObjectButton.setBackground(new java.awt.Color(153, 153, 153));
-        createObjectButton.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         createObjectButton.setForeground(new java.awt.Color(255, 255, 255));
         createObjectButton.setText("Create object");
         createObjectButton.addActionListener(this::createObjectButtonActionPerformed);
@@ -88,12 +85,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110))
             .addGroup(initImagePanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(createObjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(initImagePanelLayout.createSequentialGroup()
-                        .addComponent(userButton)
-                        .addGap(160, 160, 160)
+                        .addGap(278, 278, 278)
+                        .addComponent(createObjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(initImagePanelLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,7 +140,53 @@ public class MainJFrame extends javax.swing.JFrame {
         this.initImagePanel = initImagePanel;
     }
     
-    public void setBackgroundGif() {
+    public void setBackgroundButtons(JButton button, ImageIcon icon) {
+        Image scaled = icon.getImage().getScaledInstance(
+                button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH
+        );
+
+        button.setIcon(new ImageIcon(scaled));
+        button.setText(button.getText());
+
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+    }
+    
+    private void setBackgroundButtons() {
+        ImageIcon icon = new ImageIcon(
+                getClass().getResource("/img/buttonMC.png")
+        );
+
+        Image scaled = icon.getImage().getScaledInstance(
+                searchButton.getWidth(), searchButton.getHeight(), Image.SCALE_SMOOTH
+        );
+
+        searchButton.setIcon(new ImageIcon(scaled));
+        searchButton.setText(searchButton.getText());
+
+        searchButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        searchButton.setVerticalTextPosition(SwingConstants.CENTER);
+
+        searchButton.setBorderPainted(false);
+        searchButton.setFocusPainted(false);
+        searchButton.setContentAreaFilled(false);
+        
+        createObjectButton.setIcon(new ImageIcon(scaled));
+        createObjectButton.setText(createObjectButton.getText());
+
+        createObjectButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        createObjectButton.setVerticalTextPosition(SwingConstants.CENTER);
+
+        createObjectButton.setBorderPainted(false);
+        createObjectButton.setFocusPainted(false);
+        createObjectButton.setContentAreaFilled(false);
+    }
+    
+    private void setBackgroundGif() {
         ImageIcon gif = new ImageIcon(getClass().getResource("/img/background.gif"));
         JLabel backgroundLabel = new JLabel(gif);
 
@@ -154,7 +199,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initImagePanel.repaint();
     }
     
-    public void setTitleImage(){
+    private void setTitleImage(){
         ImageIcon imageTitle = new ImageIcon(getClass().getResource("/img/titleMainJFrame.png"));
         
         Image scaled = imageTitle.getImage().getScaledInstance(
@@ -166,47 +211,60 @@ public class MainJFrame extends javax.swing.JFrame {
         this.titleLabel.setIcon(new ImageIcon(scaled));
     }
     
-    private MouseListener getPressButtonMouseListener(JButton button){
-        MouseListener ml = new MouseListener() {
+    private void setIconUser(){
+        ImageIcon iconUser = new ImageIcon(getClass().getResource("/img/iconUser.png"));
+        
+        Image scaled = iconUser.getImage().getScaledInstance(
+                userButton.getWidth() - 10, // ancho del JLabel
+                userButton.getHeight() - 10, // alto del JLabel
+                Image.SCALE_SMOOTH // suaviza la imagen
+        );
+        
+        this.userButton.setIcon(new ImageIcon(scaled));
+    }
+    
+    private void setFontText() {
+        try {
+            Font mcFont = Font.createFont(
+                    Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/fonts/MinecraftRegular-Bmg3.otf")
+            ).deriveFont(Font.PLAIN, 25f);
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                System.out.println("Green");
-                button.setBackground(Color.GREEN);
-            }
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(mcFont);
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                System.out.println("Gray");
-                button.setBackground(Color.GRAY);
-            }
+            this.searchButton.setFont(mcFont);
+            this.createObjectButton.setFont(mcFont);
 
-            @Override
-            public void mouseClicked(MouseEvent e) {}
 
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-        };
-        return ml;
+        } catch (FontFormatException | IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     public void addSearchButtonActionListener(ActionListener al){
-        this.searchButton.addActionListener(al);
+        this.getSearchButton().addActionListener(al);
     }
     
     public void addCreateObjectButtonActionListener(ActionListener al){
-        this.createObjectButton.addActionListener(al);
+        this.getCreateObjectButton().addActionListener(al);
     }
     
     public void addUserButtonActionListener(ActionListener al){
-        this.userButton.addActionListener(al);
+        this.getUserButton().addActionListener(al);
     }
     
-
+    public void addSearchButtonMouseListener(MouseListener ml){
+        this.searchButton.addMouseListener(ml);
+    }
     
+    public void addCreateObjectButtonMouseListener(MouseListener ml){
+        this.createObjectButton.addMouseListener(ml);
+    }
+    
+    public void addUserButtonMouseListener(MouseListener ml){
+        this.userButton.addMouseListener(ml);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createObjectButton;
@@ -215,4 +273,25 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton userButton;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the createObjectButton
+     */
+    public javax.swing.JButton getCreateObjectButton() {
+        return createObjectButton;
+    }
+
+    /**
+     * @return the searchButton
+     */
+    public javax.swing.JButton getSearchButton() {
+        return searchButton;
+    }
+
+    /**
+     * @return the userButton
+     */
+    public javax.swing.JButton getUserButton() {
+        return userButton;
+    }
 }

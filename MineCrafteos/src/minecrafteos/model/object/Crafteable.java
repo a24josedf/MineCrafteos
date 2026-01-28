@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class Crafteable extends ObjectM{
 
     private boolean furnace;
-    private ArrayList<ObjectM> crafting;
+    private ArrayList<ObjectM> craftingItems;
     public Crafteable(String id, String image, String name, String type, boolean furnace) {
         super(id, image, name, type);
         this.furnace = furnace;
-        crafting = new ArrayList<>();
+        craftingItems = new ArrayList<>();
     }
 
     public boolean isFurnace() {
@@ -28,13 +28,16 @@ public class Crafteable extends ObjectM{
         this.furnace = furnace;
     }
 
-    public ArrayList<ObjectM> getCrafting() {
-        return crafting;
+    public ArrayList<ObjectM> getCraftingItems() {
+        return craftingItems;
     }
 
-    public void setCrafting(ArrayList<ObjectM> crafting) {
-        this.crafting = crafting;
+    public void setCraftingItems(ArrayList<ObjectM> crafting) {
+        this.craftingItems = crafting;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Crafteable{" + "name=" + this.getName() + ", furnace=" + furnace + '}';
+    }
 }

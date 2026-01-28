@@ -15,7 +15,7 @@ public class FileChooserJDialog extends javax.swing.JDialog {
     /**
      * Creates new form FileChooserJDialog
      */
-    public FileChooserJDialog(java.awt.Frame parent, boolean modal) {
+    public FileChooserJDialog(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -53,9 +53,9 @@ public class FileChooserJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   public File getSelectedImageFile() {
-    return fileChooser.getSelectedFile();
-}
+    public File getSelectedImageFile() {
+        return fileChooser.getSelectedFile();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fileChooser;

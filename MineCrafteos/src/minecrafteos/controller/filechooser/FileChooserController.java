@@ -4,7 +4,7 @@
  */
 package minecrafteos.controller.filechooser;
 
-import minecrafteos.controller.create.CreateController;
+import minecrafteos.controller.create.CreateObjectController;
 import minecrafteos.view.filechooser.FileChooserJDialog;
 
 /**
@@ -14,9 +14,9 @@ import minecrafteos.view.filechooser.FileChooserJDialog;
 public class FileChooserController {
     
     private FileChooserJDialog view;
-    private CreateController parentController;
+    private CreateObjectController parentController;
 
-    public FileChooserController(FileChooserJDialog view, CreateController parentController) {
+    public FileChooserController(FileChooserJDialog view, CreateObjectController parentController) {
         this.view = view;
         this.parentController = parentController;
     }

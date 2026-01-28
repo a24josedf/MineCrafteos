@@ -61,5 +61,4 @@ public class ObjectM {
     public void setObtainingObject(ObjectM obtainingObject) {
         this.obtainingObject = obtainingObject;
     }
-    
 }
