@@ -1,9 +1,18 @@
 package minecrafteos.view.users;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -17,6 +26,9 @@ public class SessionJDialog extends javax.swing.JDialog {
     public SessionJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setBackground();
+        setBackgroundButtons();
+        setFontText();
     }
 
     /**
@@ -28,36 +40,19 @@ public class SessionJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        usernameLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
-        usernameTextField = new javax.swing.JTextField();
-        loginButton = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        initImagePanel = new javax.swing.JPanel();
         signupButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         passwordPasswordField = new javax.swing.JPasswordField();
+        usernameTextField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        titleLabel.setText("Session");
-
-        usernameLabel.setText("Username:");
-
-        passwordLabel.setText("Password:");
-
-        usernameTextField.setName(""); // NOI18N
-        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTextFieldActionPerformed(evt);
-            }
-        });
-
-        loginButton.setText("Log In");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-
+        signupButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         signupButton.setText("Sign Up");
         signupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,49 +60,91 @@ public class SessionJDialog extends javax.swing.JDialog {
             }
         });
 
+        loginButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        loginButton.setText("Log In");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        passwordPasswordField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        usernameTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        usernameTextField.setName(""); // NOI18N
+        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTextFieldActionPerformed(evt);
+            }
+        });
+
+        passwordLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Password:");
+
+        usernameLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setText("Username:");
+
+        titleLabel.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Session");
+
+        javax.swing.GroupLayout initImagePanelLayout = new javax.swing.GroupLayout(initImagePanel);
+        initImagePanel.setLayout(initImagePanelLayout);
+        initImagePanelLayout.setHorizontalGroup(
+            initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(initImagePanelLayout.createSequentialGroup()
+                .addContainerGap(185, Short.MAX_VALUE)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
+            .addGroup(initImagePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(initImagePanelLayout.createSequentialGroup()
+                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        initImagePanelLayout.setVerticalGroup(
+            initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(initImagePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(initImagePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameLabel)
+                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 149, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(signupButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(initImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(usernameLabel)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginButton)
-                    .addComponent(signupButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(initImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -124,7 +161,94 @@ public class SessionJDialog extends javax.swing.JDialog {
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
+    
+     public void setBackgroundButtons(JButton button, ImageIcon icon) {
+        Image scaled = icon.getImage().getScaledInstance(
+                button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH
+        );
 
+        button.setIcon(new ImageIcon(scaled));
+        button.setText(button.getText());
+
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+    }
+     
+     private void setFontText() {
+        try {
+            Font mcFont = Font.createFont(
+                    Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/fonts/MinecraftRegular-Bmg3.otf")
+            ).deriveFont(Font.PLAIN, 25f);
+
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(mcFont);
+
+            this.signupButton.setFont(mcFont);
+            this.loginButton.setFont(mcFont);
+            this.titleLabel.setFont(mcFont);
+            this.usernameLabel.setFont(mcFont);
+            this.passwordLabel.setFont(mcFont);
+            this.usernameTextField.setFont(mcFont);
+            this.passwordPasswordField.setFont(mcFont);        
+
+
+        } catch (FontFormatException | IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+     
+     
+    
+   public void setBackground() {
+        ImageIcon png = new ImageIcon(getClass().getResource("/img/Overworld_background.png"));
+        JLabel backgroundLabel = new JLabel(png);
+
+        backgroundLabel.setLayout(new BorderLayout());
+        backgroundLabel.setPreferredSize(initImagePanel.getSize());
+        
+        initImagePanel.setLayout(new BorderLayout());
+        initImagePanel.add(backgroundLabel, BorderLayout.CENTER);
+        initImagePanel.revalidate();
+        initImagePanel.repaint();
+    }
+   
+    private void setBackgroundButtons() {
+        ImageIcon icon = new ImageIcon(
+                getClass().getResource("/img/buttonMC.png")
+        );
+
+        Image scaled = icon.getImage().getScaledInstance(
+                signupButton.getWidth(), signupButton.getHeight(), Image.SCALE_SMOOTH
+        );
+
+        signupButton.setIcon(new ImageIcon(scaled));
+        signupButton.setText(signupButton.getText());
+
+        signupButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        signupButton.setVerticalTextPosition(SwingConstants.CENTER);
+
+        signupButton.setBorderPainted(false);
+        signupButton.setFocusPainted(false);
+        signupButton.setContentAreaFilled(false);
+        
+        loginButton.setIcon(new ImageIcon(scaled));
+        loginButton.setText(loginButton.getText());
+
+        loginButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        loginButton.setVerticalTextPosition(SwingConstants.CENTER);
+
+        loginButton.setBorderPainted(false);
+        loginButton.setFocusPainted(false);
+        loginButton.setContentAreaFilled(false);
+    }
+    
+    
+    
     public JButton getLoginButton() {
         return loginButton;
     }
@@ -171,6 +295,8 @@ public class SessionJDialog extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel initImagePanel;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordPasswordField;

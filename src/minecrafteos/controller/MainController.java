@@ -11,10 +11,13 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import minecrafteos.audio.Audio;
+import minecrafteos.controller.create.CreateObjectController;
 import minecrafteos.controller.search.SearchController;
 import minecrafteos.controller.users.SessionJDialogController;
 import minecrafteos.model.users.Users;
 import minecrafteos.view.MainJFrame;
+import minecrafteos.view.create.CreateObjectJDialog;
+import minecrafteos.view.filechooser.FileChooserJDialog;
 import minecrafteos.view.search.SearchJDialog;
 import minecrafteos.view.users.SessionJDialog;
 
@@ -42,6 +45,9 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 sound();
+                CreateObjectJDialog cjd = new CreateObjectJDialog(view, true);
+                CreateObjectController cc =  new CreateObjectController(cjd,view);
+                cjd.setVisible(true);
             }
         };
         return al;

@@ -52,7 +52,6 @@ public class SearchJDialog extends javax.swing.JDialog {
         searchPanel = new javax.swing.JPanel();
         searchTextField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        itemsComboBox = new javax.swing.JComboBox<>();
         furnaceLayeredPane = new javax.swing.JLayeredPane();
         itemFurnace01Button = new javax.swing.JButton();
         itemFurnaceResultButton = new javax.swing.JButton();
@@ -78,19 +77,14 @@ public class SearchJDialog extends javax.swing.JDialog {
         searchButton.setForeground(new java.awt.Color(198, 198, 198));
         searchButton.setBorder(null);
 
-        itemsComboBox.setEditable(true);
-        itemsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(itemsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -101,9 +95,7 @@ public class SearchJDialog extends javax.swing.JDialog {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(itemsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         furnaceLayeredPane.setForeground(new java.awt.Color(198, 198, 198));
@@ -265,9 +257,6 @@ public class SearchJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public String getTextItemsComboBox(){
-        return this.itemsComboBox.getActionCommand();
-    }
 
     public void setFurnaceImageLogoPanel(Image img) {
         JPanel panelWithImage = new JPanel() {
@@ -557,7 +546,6 @@ public class SearchJDialog extends javax.swing.JDialog {
     private javax.swing.JButton itemFurnace01Button;
     private javax.swing.JButton itemFurnace02Button;
     private javax.swing.JButton itemFurnaceResultButton;
-    private javax.swing.JComboBox<String> itemsComboBox;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextField;
@@ -575,19 +563,5 @@ public class SearchJDialog extends javax.swing.JDialog {
      */
     public void setSearchTextField(javax.swing.JTextField searchTextField) {
         this.searchTextField = searchTextField;
-    }
-
-    /**
-     * @return the itemsComboBox
-     */
-    public javax.swing.JComboBox<String> getItemsComboBox() {
-        return itemsComboBox;
-    }
-
-    /**
-     * @param itemsComboBox the itemsComboBox to set
-     */
-    public void setItemsComboBox(javax.swing.JComboBox<String> itemsComboBox) {
-        this.itemsComboBox = itemsComboBox;
     }
 }

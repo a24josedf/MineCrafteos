@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,60 +24,54 @@ public class SessionJDialogController {
     public SessionJDialogController(SessionJDialog view, Users model) throws IOException, ClassNotFoundException {
         this.view = view;
         this.model = model;
-        manageLogInButton();
+        //manageLogInButton();
         this.view.addLogInButtonActionListener(this.getLogInButtonActionListener());
         this.view.addSingUpButtonActionListener(this.getSingUpButtonActionListener());
     }
 
-    private void verifyLogIn() throws IOException, ClassNotFoundException {
-        File file = new File("users.ser");
+    private void verifyLogIn() throws IOException, ClassNotFoundException, SQLException {
         String username = view.getUsername().trim();
         String password = view.getPassword().toString().trim();
         //User u = new User(username, password);
         int state = 3;
-        for (User us : model.deserializedList()) {
-            if (username.equals(us.getName().trim())) {
-                if (password.equals(us.getPassword().trim())) {
-                    model.setCurrentUser(model.getUser(username));
-                    state = 1;
-                } else {
-                    state = 2;
-                }
+        User u = model.getUser(username);
+        if (u == null) {
+            state = 2;
+        }
+        else{
+            if (password.equals(u.getPassword().trim())) {
+                model.setCurrentUser(model.getUser(username));
+                state = 1;
+            }
+            switch (state) {
+                case 1:
+                    JOptionPane.showMessageDialog(view, "User loged in correctly");
+                    view.dispose();
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(view, "Incorrect password");
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(view, "Username not found.");
+                    clearView();
+                    break;
             }
         }
-        switch (state) {
-            case 1:
-                JOptionPane.showMessageDialog(view, "User loged in correctly");
-                view.dispose();
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(view, "Incorrect password");
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(view, "Username not found.");
-                clearView();
-                break;
-        }
+            
+        
+            
     }
 
-    private void verifySingUp() throws IOException, ClassNotFoundException {
-        File file = new File("users.ser");
+    private void verifySingUp() throws IOException, ClassNotFoundException, SQLException {
         String username = view.getUsername().trim();
         String password = view.getPassword().toString().trim();
         User u = new User(username, password);
-        int state = 3;
-        if (file.length() < 1) {
-            model.addUser(u);
+        int state = 2;
+        if (model.getUser(username)==null) {
             state = 1;
-        } else {
-            for (User us : model.deserializedList()) {
-                if (username.equals(us.getName().trim())) {
-                    state = 2;
-                } else {
-                    model.addUser(u);
-                }
-            }
+            model.addUser(u);
         }
+        
         switch (state) {
             case 1:
                 JOptionPane.showMessageDialog(view, "User singed up successfully, log in to get into the aplication");
@@ -84,10 +79,6 @@ public class SessionJDialogController {
                 break;
             case 2:
                 JOptionPane.showMessageDialog(view, "Username already exists");
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(view, "User singed up successfully, log in to get into the aplication");
-                clearView();
                 break;
         }
     }
@@ -141,6 +132,8 @@ public class SessionJDialogController {
                         Logger.getLogger(SessionJDialogController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(SessionJDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        System.getLogger(SessionJDialogController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                     }
                 }
                 try {
@@ -173,6 +166,8 @@ public class SessionJDialogController {
                         Logger.getLogger(SessionJDialogController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(SessionJDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        System.getLogger(SessionJDialogController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                     }
                 }
                 try {

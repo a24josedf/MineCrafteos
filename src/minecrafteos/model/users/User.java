@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * @author dam2_alu04@inf.ald
  */
 public class User implements Serializable{
-    private static final long serialVersionUID = 1L;
     private String name;
     private String password;
 
@@ -31,6 +30,11 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "name=" + name + ", password=" + password + '}';
     }
     
 }
