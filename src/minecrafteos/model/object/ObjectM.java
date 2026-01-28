@@ -1,5 +1,6 @@
 package minecrafteos.model.object;
 
+import java.util.ArrayList;
 import minecrafteos.model.livingBeing.LivingBeing;
 import minecrafteos.model.users.User;
 
@@ -8,25 +9,48 @@ import minecrafteos.model.users.User;
  * @author alumno
  */
 public class ObjectM {
-    private String id;
+    private int id;
     private String image;
     private String name;
     private String type;
     private ObjectM obtainingObject;
     private LivingBeing obtainingLV;
+    private boolean crafteable;
+    private boolean furnace;
+    private User user;
+    private ArrayList<ObjectM> craftingItems;
 
-    public ObjectM(String id, String image, String name, String type) {
+    public ObjectM(int id, String image, String name, String type, boolean crafteable,  boolean furnace, User user) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.type = type;
+        this.crafteable = crafteable;
+        this.furnace = furnace;
+        this.user = user;
     }
 
-    public String getId() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isCrafteable() {
+        return crafteable;
+    }
+
+    public void setCrafteable(boolean crafteable) {
+        this.crafteable = crafteable;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,4 +85,29 @@ public class ObjectM {
     public void setObtainingObject(ObjectM obtainingObject) {
         this.obtainingObject = obtainingObject;
     }
+
+    public LivingBeing getObtainingLV() {
+        return obtainingLV;
+    }
+
+    public void setObtainingLV(LivingBeing obtainingLV) {
+        this.obtainingLV = obtainingLV;
+    }
+
+    public boolean isFurnace() {
+        return furnace;
+    }
+
+    public void setFurnace(boolean furnace) {
+        this.furnace = furnace;
+    }
+
+    public ArrayList<ObjectM> getCraftingItems() {
+        return craftingItems;
+    }
+
+    public void setCraftingItems(ArrayList<ObjectM> craftingItems) {
+        this.craftingItems = craftingItems;
+    }
+    
 }

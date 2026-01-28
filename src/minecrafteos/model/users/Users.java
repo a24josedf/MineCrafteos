@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import services.DBManager;
+import minecrafteos.services.DBManager;
 
 public class Users implements Serializable {
     private DBManager dbm;

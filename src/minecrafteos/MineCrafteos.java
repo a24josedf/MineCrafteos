@@ -6,7 +6,7 @@ import minecrafteos.controller.MainController;
 import minecrafteos.model.users.User;
 import minecrafteos.model.users.Users;
 import minecrafteos.view.MainJFrame;
-import services.DBManager;
+import minecrafteos.services.DBManager;
 
 /**
  *
