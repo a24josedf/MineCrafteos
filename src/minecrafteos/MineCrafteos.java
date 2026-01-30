@@ -29,6 +29,8 @@ public class MineCrafteos {
         System.out.println(db.getUser("carlos"));
         db.removeUser("carlos");
         System.out.println(db.getUser("carlos"));
+        System.out.println(db.getObject("roca"));
+        
     }
     
 }

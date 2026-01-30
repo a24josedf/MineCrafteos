@@ -15,16 +15,22 @@ public class ObjectM {
     private String type;
     private ObjectM obtainingObject;
     private LivingBeing obtainingLV;
+    private boolean block;
+    private boolean harvest;
+    private boolean kill;
     private boolean crafteable;
     private boolean furnace;
     private User user;
     private ArrayList<ObjectM> craftingItems;
 
-    public ObjectM(int id, String image, String name, String type, boolean crafteable,  boolean furnace, User user) {
+    public ObjectM(int id, String image, String name, String type, boolean block, boolean harvest, boolean kill, boolean crafteable, boolean furnace, User user) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.type = type;
+        this.block = block;
+        this.harvest = harvest;
+        this.kill = kill;
         this.crafteable = crafteable;
         this.furnace = furnace;
         this.user = user;
@@ -109,5 +115,35 @@ public class ObjectM {
     public void setCraftingItems(ArrayList<ObjectM> craftingItems) {
         this.craftingItems = craftingItems;
     }
+
+    public boolean isBlock() {
+        return block;
+    }
+
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
+
+    public boolean isHarvest() {
+        return harvest;
+    }
+
+    public void setHarvest(boolean harvest) {
+        this.harvest = harvest;
+    }
+
+    public boolean isKill() {
+        return kill;
+    }
+
+    public void setKill(boolean kill) {
+        this.kill = kill;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjectM{" + "id=" + id + ", image=" + image + ", name=" + name + ", type=" + type + ", obtainingObject=" + obtainingObject + ", obtainingLV=" + obtainingLV + ", block=" + block + ", harvest=" + harvest + ", kill=" + kill + ", crafteable=" + crafteable + ", furnace=" + furnace + ", user=" + user + ", craftingItems=" + craftingItems + '}';
+    }
+    
     
 }

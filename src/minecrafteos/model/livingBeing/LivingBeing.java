@@ -5,23 +5,23 @@ package minecrafteos.model.livingBeing;
  * @author alumno
  */
 public class LivingBeing {
-    private String id;
+    private int id;
     private String name;
     private String location;
     private String type;
 
-    public LivingBeing(String id, String name, String location, String type) {
+    public LivingBeing(int id, String name, String location, String type) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.type = type;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
