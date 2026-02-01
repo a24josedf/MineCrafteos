@@ -102,18 +102,24 @@ public class CreateObjectController {
     }
 
     private ActionListener getFileButtonActionListener() {
-        ActionListener al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                sound();
-                imageView = new FileChooserJDialog(view, true);
-                FileChooserController fcc = new FileChooserController(imageView, CreateObjectController.this);
-                imageView.setVisible(true);
-            }
-        };
-        return al;
+    return new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            FileChooserJDialog fcjd = new FileChooserJDialog(parent, true);
+            fcjd.setLocationRelativeTo(parent);
+            fcjd.setVisible(true);
 
-    }
+            File selectedFile = fcjd.getSelectedImageFile(); 
+
+            if (selectedFile != null) {
+                imageView = fcjd; 
+                System.out.println("Archivo elegido: " + selectedFile.getAbsolutePath());
+            } else {
+                System.out.println("Selección cancelada");
+            }
+        }
+    };
+}
 
     private MouseListener addPressButtonMouseListener(JButton button) {
         MouseListener ml = new MouseListener() {
