@@ -681,8 +681,14 @@ Pulsando en seleccionar podremos escoger una imagen para dicho objeto.
   - Vista y lógica de la creación de objetos y manejo de errores, así como la integración de la vista de los usuarios con la estética del programa, y el completado del servicio de la base de datos.
 
 ## Mejoras <a name="id5"></a>
-* Concretar numero de objetos resultantes de un crafteo
-
+* Concretar numero de objetos resultantes de un crafteo.
+* Información extra de la receta de los objetos crafteables y horneables.
+* Mejora en la creación de objetos, especificando con más detenimiento la formula del objeto.
+* Mejoria en el salvado de imagenes.
+* Mejorar el cambio del boton del login del usuario.
+* Optimizar la busqueda de objetos.
+* Mejorar la barra de busqueda de objetos para que no distinga entre mayusculas y minusculas en diferentes caracteres.
+* Posible inserción de una busqueda dinamica.
 
 ## Conclusiones<a name="id6"></a>
 
