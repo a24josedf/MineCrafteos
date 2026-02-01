@@ -202,6 +202,31 @@ public class DBManager {
         closeConnection();
         return o;
     }
+    
+    public void addObject(ObjectM o) throws SQLException {
+    openConnection();
+
+    String sql = """
+        INSERT INTO objeto
+        (nombre, tipo, picable, cosechable, matable, crafteable, horneable, imagen, ID_usuario)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
+
+    PreparedStatement ps = connection.prepareStatement(sql);
+    ps.setString(1, o.getName());
+    ps.setString(2, o.getType());
+    ps.setBoolean(3, o.isBlock());
+    ps.setBoolean(4, o.isHarvest());
+    ps.setBoolean(5, o.isKill());
+    ps.setBoolean(6, o.isCrafteable());
+    ps.setBoolean(7, o.isFurnace());
+    ps.setString(8, o.getImage());
+
+    ps.executeUpdate();
+
+    ps.close();
+    closeConnection();
+}
 
     public ObjectM getObject(int oID) throws SQLException {
         openConnection();
