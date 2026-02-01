@@ -469,7 +469,9 @@ INSERT INTO usuario (nombre, contrasenha)
 VALUES ('Steve', '1234');
 
 INSERT INTO ser_vivo (nombre, ubicacion, tipo)
-VALUES ('Árbol', 'Bosque', 'Planta');
+VALUES 
+('Árbol', 'Bosque', 'Planta'),
+('Vaca', 'Pradera', 'Animal');
 
 /* =========================
    OBJETOS
@@ -500,7 +502,14 @@ VALUES
  FALSE, FALSE, FALSE, FALSE, TRUE, '/img/espada.png'),
 
 (NULL, 1, 'Horno', 'Bloque',
- FALSE, FALSE, FALSE, FALSE, TRUE, '/img/horno.png');
+ FALSE, FALSE, FALSE, FALSE, TRUE, '/img/horno.png'),
+
+-- Comida
+(NULL, 1, 'Carne cruda', 'Comida',
+ FALSE, FALSE, TRUE, FALSE, FALSE, '/img/carne_cruda.png'),
+
+(NULL, 1, 'Carne cocinada', 'Comida',
+ FALSE, FALSE, FALSE, TRUE, FALSE, '/img/carne_cocinada.png');
 
 /* =========================
    COSECHA
@@ -511,13 +520,26 @@ INSERT INTO cosecha (ID_ser_vivo, ID_objeto)
 VALUES (1, 1);
 
 /* =========================
+   MATAR
+   ========================= */
+
+-- Vaca → Carne cruda
+INSERT INTO mata (ID_ser_vivo, ID_objeto)
+VALUES (2, 8);
+
+/* =========================
    HORNEADO
    ========================= */
 
--- Tronco → Carbón (carbón se obtiene horneando tronco)
+-- Tronco → Carbón
 UPDATE objeto
 SET ID_objeto = 5
 WHERE ID = 1;
+
+-- Carne cruda → Carne cocinada
+UPDATE objeto
+SET ID_objeto = 9
+WHERE ID = 8;
 
 /* =========================
    CRAFTEOS (3x3)
@@ -641,7 +663,7 @@ Si buscamos un objeto, nos aparecerá su crafteo
 
 - Conjuntamente, concretamos el pliego del proyecto, así como las ideas generales de la base de datos y la creación de los modelos.
 - Axel(25 horas)
-  - Realización de la vista principal, vista de buscar objeto, e implementación de imágenes, así como elaboración e implementación del gif la ventana de inicio.
+  - Realización de la vista principal, vista, controlador y funcionamiento general de buscar objeto, e implementación de imágenes, así como elaboración e implementación del gif la ventana de inicio y la música.
 - Carlos(25 horas)
 	- Pulido de modelos ER y Relacional, realización del script de la base de datos, creación e implementación del servicio de conexión con la base de datos y creacion e implementación de la gestión de los usuarios, elaboración de readme.
 - Breogán(25 horas)
