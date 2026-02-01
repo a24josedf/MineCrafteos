@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import minecrafteos.audio.Audio;
 import minecrafteos.model.users.User;
 import minecrafteos.model.users.Users;
 import minecrafteos.view.users.SessionJDialog;
@@ -125,6 +126,7 @@ public class SessionJDialogController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                sound();
                 if (usernameTextFieldEmpty()) {
                     JOptionPane.showMessageDialog(view, "Introduce an user");
                 }
@@ -159,6 +161,7 @@ public class SessionJDialogController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                sound();
                 if (usernameTextFieldEmpty()) {
                     JOptionPane.showMessageDialog(view, "Introduce an user");
                 }
@@ -219,5 +222,11 @@ public class SessionJDialogController {
             }
         };
         return ml;
+    }
+    
+    private void sound() {
+        Audio player = new Audio();
+        player.play("/audio/boton.wav");
+        player.setVolume(0.9f);
     }
 }

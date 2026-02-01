@@ -10,6 +10,7 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,6 +59,7 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cancelButton.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelButton.setText("Cancelar");
 
         imageLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -65,6 +67,7 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         imageLabel.setText("Imagen:");
 
         addButton.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("Añadir");
 
         typeLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -77,7 +80,12 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
 
         buttonGroup1.add(craftingTableRadioButton);
         craftingTableRadioButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        craftingTableRadioButton.setText("Mesa de Crafteo");
+        craftingTableRadioButton.setText("Mesa");
+        craftingTableRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                craftingTableRadioButtonActionPerformed(evt);
+            }
+        });
 
         typeComboBox.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -92,9 +100,11 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         nameLabel.setText("Nombre:");
 
         nameTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        nameTextField.setForeground(new java.awt.Color(255, 255, 255));
 
         fileChooserButton.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        fileChooserButton.setText("Seleccionar archivo...");
+        fileChooserButton.setForeground(new java.awt.Color(255, 255, 255));
+        fileChooserButton.setText("Seleccionar...");
         fileChooserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileChooserButtonActionPerformed(evt);
@@ -106,33 +116,29 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         initImagePanelLayout.setHorizontalGroup(
             initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(initImagePanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(initImagePanelLayout.createSequentialGroup()
+                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, initImagePanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(furnaceRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(59, 59, 59)
+                        .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(fileChooserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(typeComboBox, 0, 217, Short.MAX_VALUE)
+                            .addComponent(craftingTableRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, initImagePanelLayout.createSequentialGroup()
                 .addGap(0, 272, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
-            .addGroup(initImagePanelLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(initImagePanelLayout.createSequentialGroup()
-                            .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(typeLabel)
-                                .addComponent(furnaceRadioButton))
-                            .addGroup(initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(initImagePanelLayout.createSequentialGroup()
-                                    .addGap(58, 58, 58)
-                                    .addComponent(craftingTableRadioButton))
-                                .addGroup(initImagePanelLayout.createSequentialGroup()
-                                    .addGap(26, 26, 26)
-                                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(initImagePanelLayout.createSequentialGroup()
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileChooserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         initImagePanelLayout.setVerticalGroup(
             initImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -185,6 +191,10 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
     private void fileChooserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fileChooserButtonActionPerformed
+
+    private void craftingTableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_craftingTableRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_craftingTableRadioButtonActionPerformed
 
     public void setBackgroundButtons(JButton button, ImageIcon icon) {
         Image scaled = icon.getImage().getScaledInstance(
@@ -241,13 +251,16 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         initImagePanel.repaint();
     }
 
-    private void setBackgroundButtons() {
+   private void setBackgroundButtons() {
         ImageIcon icon = new ImageIcon(
                 getClass().getResource("/img/buttonMC.png")
         );
 
         Image scaled = icon.getImage().getScaledInstance(
                 addButton.getWidth(), addButton.getHeight(), Image.SCALE_SMOOTH
+        );
+        Image scaledFile = icon.getImage().getScaledInstance(
+                fileChooserButton.getWidth(), fileChooserButton.getHeight(), Image.SCALE_SMOOTH
         );
 
         addButton.setIcon(new ImageIcon(scaled));
@@ -270,7 +283,7 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
         cancelButton.setFocusPainted(false);
         cancelButton.setContentAreaFilled(false);
 
-        fileChooserButton.setIcon(new ImageIcon(scaled));
+        fileChooserButton.setIcon(new ImageIcon(scaledFile));
         fileChooserButton.setText(fileChooserButton.getText());
 
         fileChooserButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -348,6 +361,18 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
 public boolean isMeltChecked() {
     return furnaceRadioButton.isSelected();
 }
+
+ public void addCancelButtonMouseListener (MouseListener ml){
+        this.cancelButton.addMouseListener(ml);
+    }
+    
+     public void addAddButtonMouseListener (MouseListener ml){
+        this.addButton.addMouseListener(ml);
+    }
+     
+      public void addChooserButtonMouseListener (MouseListener ml){
+        this.fileChooserButton.addMouseListener(ml);
+    }
 
 
 

@@ -6,7 +6,12 @@ package minecrafteos.controller.create;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import minecrafteos.audio.Audio;
 import minecrafteos.controller.filechooser.FileChooserController;
 import minecrafteos.view.MainJFrame;
 import minecrafteos.view.create.CreateObjectJDialog;
@@ -27,6 +32,9 @@ public class CreateObjectController {
         this.view.addAddButtonActionListener(this.getAddButtonActionListener());
         this.view.addCancelButtonActionListener(this.getCancelButtonActionListener());
         this.view.addFileChooserActionListener(this.getFileButtonActionListener());
+        this.view.addCancelButtonMouseListener(this.addPressButtonMouseListener(view.getCancelButton()));
+        this.view.addAddButtonMouseListener(this.addPressButtonMouseListener(view.getAddButton()));
+        this.view.addChooserButtonMouseListener(this.addPressButtonMouseListener(view.getFileChooserButton()));
     }
 
     private boolean nameTextFieldEmpty() {
@@ -54,6 +62,7 @@ public class CreateObjectController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                sound();
                 if (nameTextFieldEmpty()) {
                     JOptionPane.showMessageDialog(view, "Introduce a name for the item");
                 }
@@ -82,6 +91,7 @@ public class CreateObjectController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                sound();
                 view.dispose();
             }
         };
@@ -93,6 +103,7 @@ public class CreateObjectController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                sound();
                 imageView = new FileChooserJDialog(view, true);
                 FileChooserController fcc = new FileChooserController(imageView, CreateObjectController.this);
                 imageView.setVisible(true);
@@ -100,6 +111,46 @@ public class CreateObjectController {
         };
         return al;
 
+    }
+    
+      private MouseListener addPressButtonMouseListener(JButton button) {
+        MouseListener ml = new MouseListener() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonEnteredMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+            
+            @Override
+            public void mousePressed(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonPressedMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+            
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonEnteredMC.png"));
+                view.setBackgroundButtons(button, icon);
+            }
+        };
+        return ml;
+    }
+    
+     private void sound() {
+        Audio player = new Audio();
+        player.play("/audio/boton.wav");
+        player.setVolume(0.9f);
     }
 
 }
