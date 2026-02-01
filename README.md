@@ -691,6 +691,7 @@ Pulsando en seleccionar podremos escoger una imagen para dicho objeto.
 * Posible inserción de una busqueda dinamica.
 
 ## Conclusiones<a name="id6"></a>
+En total, el proyecto ha requerido de alrededor de 25 horas por parte de cada miembro. Consideramos que el reparto de tareas ha sido bastante equilibrada aunque si es cierto que la organización del trabajo en si ha sido bastante desequilibrada por situaciaciones personales y externas de cada miembro. A pesar de todo, y de tener algunas cosas mejorables, pensamos que el proyecto cumple con los requisitos minimos funcionales que se esperan y creemos que, por lo menos en lo visual, se logrado conformar un programa aceptable pese a las circustancias climaticas que hemos sufrido todos los miembros del grupo. Todos nos hemos esforzado y dedicado tiempo personal a este proyecto y esperamos que en futuros trabajos logremos mejorar las carencias de este.
 
 ## Autores<a name="id7"></a>
 
