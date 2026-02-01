@@ -8,11 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import minecrafteos.audio.Audio;
 import minecrafteos.controller.filechooser.FileChooserController;
+import minecrafteos.model.object.ObjectM;
+import minecrafteos.model.users.User;
+import minecrafteos.services.DBManager;
 import minecrafteos.view.MainJFrame;
 import minecrafteos.view.create.CreateObjectJDialog;
 import minecrafteos.view.filechooser.FileChooserJDialog;
@@ -22,10 +26,11 @@ import minecrafteos.view.filechooser.FileChooserJDialog;
  * @author dam2_alu25@inf.ald
  */
 public class CreateObjectController {
+
     private CreateObjectJDialog view;
     private MainJFrame parent;
     private FileChooserJDialog imageView;
-    
+
     public CreateObjectController(CreateObjectJDialog view, MainJFrame parent) {
         this.view = view;
         this.parent = parent;
@@ -63,6 +68,7 @@ public class CreateObjectController {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 sound();
+
                 if (nameTextFieldEmpty()) {
                     JOptionPane.showMessageDialog(view, "Introduce a name for the item");
                 }
@@ -78,13 +84,60 @@ public class CreateObjectController {
 
                 if (!nameTextFieldEmpty() && !ImageFileChooserEmpty() && !TypeComboBoxEmpty() && !CraftOrMeltCheckBoxEmpty()) {
                     System.out.println("Objeto Creado");
-                    //ObjectM item = new ObjectM();
-                }
 
+                    boolean block = true;
+                    boolean harvest = false;
+                    boolean kill = false;
+                    boolean crafteable = view.isCraftChecked();
+                    boolean furnace = view.isMeltChecked();
+
+                    DBManager db = new DBManager();
+                    User newUser = new User("nombre", "contrasenha");
+                    try {
+                        db.addUser(newUser);
+                        System.out.println("Usuario insertado correctamente: " + newUser.getName());
+                    } catch (SQLException ex) {
+                        System.out.println("Error al insertar usuario: " + ex.getMessage());
+                    }
+
+                    User userWithId = null;
+                    try {
+                        userWithId = db.getUser(newUser.getName());
+                        if (userWithId != null) {
+                            System.out.println("Usuario recuperado correctamente: " + userWithId.getName());
+                        } else {
+                            System.out.println("No se pudo recuperar el usuario de la BD");
+                        }
+                    } catch (SQLException ex) {
+                        System.out.println("Error al obtener usuario: " + ex.getMessage());
+                    }
+
+                    ObjectM item = new ObjectM(
+                            0,
+                            imageView.getSelectedImageFile().getAbsolutePath(),
+                            view.getName(),
+                            view.getTypeComboBoxItem(),
+                            block,
+                            harvest,
+                            kill,
+                            crafteable,
+                            furnace,
+                            userWithId
+                    );
+
+                    try {
+                        db.addObject(item);
+                        System.out.println("Objeto guardado correctamente en la BD");
+                    } catch (SQLException ex) {
+                        System.out.println("Error al crear objeto: " + ex.getMessage());
+                    }
+
+                    JOptionPane.showMessageDialog(view, "Objeto guardado correctamente");
+                    view.dispose();
+                }
             }
         };
         return al;
-
     }
 
     private ActionListener getCancelButtonActionListener() {
@@ -112,8 +165,8 @@ public class CreateObjectController {
         return al;
 
     }
-    
-      private MouseListener addPressButtonMouseListener(JButton button) {
+
+    private MouseListener addPressButtonMouseListener(JButton button) {
         MouseListener ml = new MouseListener() {
 
             @Override
@@ -131,13 +184,13 @@ public class CreateObjectController {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonPressedMC.png"));
                 view.setBackgroundButtons(button, icon);
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/img/buttonEnteredMC.png"));
@@ -146,8 +199,8 @@ public class CreateObjectController {
         };
         return ml;
     }
-    
-     private void sound() {
+
+    private void sound() {
         Audio player = new Audio();
         player.play("/audio/boton.wav");
         player.setVolume(0.9f);
