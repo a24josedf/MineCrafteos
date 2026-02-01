@@ -23,6 +23,12 @@ import javax.swing.SwingConstants;
  */
 public class CreateObjectJDialog extends javax.swing.JDialog {
 
+    private File selectedImageFile;
+
+    public File getSelectedImageFile() {
+    return selectedImageFile;
+}
+
     /**
      * Creates new form AddJDialog
      */
@@ -185,7 +191,13 @@ public class CreateObjectJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_typeComboBoxActionPerformed
 
     private void fileChooserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserButtonActionPerformed
-        // TODO add your handling code here:
+          FileChooserJDialog chooser =
+            new FileChooserJDialog((Frame) this.getParent(), true);
+
+    chooser.setLocationRelativeTo(this);
+    chooser.setVisible(true);
+
+    selectedImageFile = chooser.getSelectedImageFile();
     }//GEN-LAST:event_fileChooserButtonActionPerformed
 
     public void setBackgroundButtons(JButton button, ImageIcon icon) {
