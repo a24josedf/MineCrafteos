@@ -657,6 +657,17 @@ Si buscamos un objeto, nos aparecerá su crafteo
 ![](img/11.png)
 ![](img/12.png)
 
+Si pulsamos Create object, se abrirá una ventana para que el usuario agrege un objeto.
+
+![](img/13.png)
+
+Crearemos el objeto rellenando todos los campos.
+
+![](img/14.png)
+
+Pulsando en seleccionar podremos escoger una imagen para dicho objeto.
+
+![](img/15.png)
 
 
 ## Reparto de tareas<a name="id4"></a>
